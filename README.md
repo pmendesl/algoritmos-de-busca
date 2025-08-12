@@ -1,75 +1,73 @@
-Pedro Mendes
-Leonardo Augusto
-Alexandre
-Guilherme Peres
+Pedro Mendes RM: 562242
+Leonardo Augusto RM: 565564
+Alexandre RM: 563346
+Guilherme Peres RM: 563981
+
 
 Algoritmos de Busca em C
 
-Este repositório contém implementações de algoritmos de busca fundamentais em C, como parte de um exercício prático de estruturas de dados e algoritmos.
+Este repositório contém implementações de algoritmos de busca fundamentais em C, como parte de um exercício prático de estruturas de dados e algoritmos. O objetivo é demonstrar e comparar a busca linear e a busca binária em diferentes contextos.
 
-Descrição dos Algoritmos
+Descrição Breve das Diferenças
 
-Busca Linear vs. Busca Binária
+A Busca Linear e a Busca Binária são dois métodos para encontrar um elemento em uma coleção, mas com abordagens e eficiências muito diferentes.
 
-A Busca Linear é o método de busca mais simples. Ela percorre sequencialmente cada elemento de uma coleção (como um vetor) desde o início até o fim, comparando cada um com o valor alvo.
-- Vantagem: Funciona em coleções desordenadas.
-- Desvantagem: É ineficiente para grandes volumes de dados, com complexidade de tempo de O(n) no pior caso.
+-  Busca Linear:
+    -   Como funciona: Percorre a coleção elemento por elemento, do início ao fim, até encontrar o item desejado.
+    -   Requisito: Nenhum. Funciona em dados ordenados ou desordenados.
+    -   Eficiência: Lenta para grandes coleções. Sua complexidade de tempo é O(n), o que significa que o tempo de busca cresce linearmente com o número de elementos.
 
-A Busca Binária é um algoritmo muito mais eficiente, mas exige que a coleção esteja previamente ordenada. Ela funciona dividindo repetidamente a porção de busca da coleção pela metade até que o valor alvo seja encontrado ou o espaço de busca se esgote.
-- Vantagem: Extremamente rápida para grandes volumes de dados, com complexidade de tempo de O(log n).
-- Desvantagem: Requer que os dados estejam ordenados.
+-   Busca Binária:
+    -   Como funciona: "Divide para conquistar". A cada passo, compara o item alvo com o elemento do meio da coleção. Se não for igual, descarta metade da coleção e repete o processo na metade restante.
+    -   Requisito: Exige que a coleção esteja ordenada.
+    -   Eficiência: Extremamente rápida. Sua complexidade de tempo é O(log n), o que significa que ela pode encontrar um item em bilhões de elementos em poucas dezenas de comparações.
 
-Arquivos no Repositório
-
-- `busca_linear.c`: Demonstra a busca de um código de produto em um vetor desordenado.
-- `busca_binaria.c`: Ordena o mesmo vetor de códigos e aplica a busca binária, comparando a eficiência.
-- `agenda_busca.c`: Implementa buscas linear (case-insensitive) e binária (case-sensitive) em um vetor de nomes.
-- `limiar_sensor.c`: Implementa uma variação da busca binária (`lower_bound`) para encontrar o primeiro valor maior ou igual a um alvo em um vetor de leituras de sensor.
+| Característica | Busca Linear | Busca Binária |
+| :--- | :--- | :--- |
+| **Pré-requisito** | N/A | Dados ordenados |
+| **Complexidade (Pior Caso)** | O(n) | O(log n) |
+| **Velocidade** | Lenta | Rápida |
+| **Uso Ideal** | Listas pequenas ou desordenadas | Listas grandes e ordenadas |
 
 Como Compilar e Executar
 
-Você pode compilar os arquivos usando um compilador C como o GCC.
+Para compilar e executar os arquivos, você precisará de um compilador C, como o GCC. Abra seu terminal, navegue até a pasta `algoritmos-de-busca/` e use os seguintes comandos:
 
+1. Busca Linear (Catálogo de Produtos)
 ```bash
-# Para compilar o programa de busca linear
+# Compilar
 gcc busca_linear.c -o busca_linear
 
-# Para executar
+# Executar
 ./busca_linear
 ```
 
+2. Busca Binária (Catálogo de Produtos Ordenado)
 ```bash
-# Para compilar o programa de busca binária
+# Compilar
 gcc busca_binaria.c -o busca_binaria
 
-# Para executar
+# Executar
 ./busca_binaria
 ```
 
+3. Busca de CPF (em base ordenada)
 ```bash
-# Para compilar o programa da agenda
-gcc agenda_busca.c -o agenda_busca
+# Compilar
+gcc cpf_busca.c -o cpf_busca
 
-# Para executar
-./agenda_busca
+# Executar
+./cpf_busca
 ```
 
-```bash
-# Para compilar o programa de limiar de sensor
-gcc limiar_sensor.c -o limiar_sensor
-
-# Para executar
-./limiar_sensor
-```
-
-Observações: Quando Usar Cada Técnica
+Observações sobre quando usar cada técnica
 
 - Use a Busca Linear quando:
-  - A coleção de dados é pequena.
-  - A coleção não está ordenada e o custo de ordená-la é maior do que o benefício da busca rápida (por exemplo, se você for realizar poucas buscas).
-  - A simplicidade do código é uma prioridade.
+    -   A coleção de dados é pequena.
+    -   A coleção não está ordenada e o custo de ordená-la (uma operação de O(n log n)) não compensa, especialmente se você for realizar poucas buscas.
+    -   A simplicidade do código é mais importante que a performance.
 
-- Use a Busca Binária quando:
-  - A coleção de dados é grande.
-  - A coleção já está ordenada ou será buscada múltiplas vezes, justificando o custo inicial da ordenação.
-  - O desempenho da busca é crítico.
+-   Use a Busca Binária quando:
+    -   A coleção de dados é grande.
+    -   O desempenho da busca é crítico.
+    -   A coleção já está ordenada ou será buscada múltiplas vezes, justificando o custo único de ordená-la no início. Exemplos clássicos incluem dicionários, listas telefônicas e bases de dados indexadas (como a de CPFs).
